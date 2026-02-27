@@ -23,6 +23,7 @@ import { analyzeWasteImage, chatWithEcofy, type WasteAnalysis, type ChatMessage 
 import ReuseRecyclePanel from "@/components/chat/ReuseRecyclePanel";
 import FeedbackButtons from "@/components/FeedbackButtons";
 import { useAuth } from "@/contexts/AuthContext";
+import { Camera } from "lucide-react";
 
 interface Message {
     id: string;
@@ -192,6 +193,13 @@ const EcoChatbot = () => {
                             className="text-green-700 hover:bg-green-100 text-sm px-3"
                         >
                             🌍 Carbon Calculator
+                        </Button>
+                        <Button
+                            onClick={() => navigate("/smart-camera")}
+                            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl"
+                            >
+                            <Camera size={18} />
+                            Smart Camera
                         </Button>
                         {user ? (
                             <Button
