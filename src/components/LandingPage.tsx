@@ -9,46 +9,49 @@ const LandingPage = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   /**
-   * Picks the sweetest, cleanest female English voice available.
-   * Priority order (highest → lowest):
-   *   macOS/iOS  : Samantha, Karen, Moira, Tessa
-   *   Windows    : Zira (Microsoft)
-   *   Chrome/Web : Google US English Female
-   *   Generic    : any voice whose name/lang signals female + English
-   * Returns undefined if none found (browser will use its default).
+   * Retrieves an Indian English female voice for a warm, human-like tone.
+   * Focuses on natural sounding Indian voices across different platforms.
    */
   const getBestFemaleVoice = (): SpeechSynthesisVoice | undefined => {
     const voices = speechSynthesis.getVoices();
 
-    // Strict priority list of known sweet female voices
-    const femaleVoicePriority = [
-      'Samantha',           // macOS – warm, natural, most popular
-      'Karen',              // macOS Australian – clear & friendly
-      'Moira',              // macOS Irish – melodic
-      'Tessa',              // macOS South African – bright
-      'Microsoft Zira',     // Windows 10/11 – clean female
-      'Google US English',  // Chrome Android/desktop female
-      'Google UK English Female',
+    // Priority list of Indian English voices with a focus on natural, human-like tones
+    const indianVoicePriority = [
+      'Microsoft Neerja Online (Natural)', // Windows Edge - highly natural
+      'Microsoft Heera',      // Windows Indian English
+      'Veena',                // macOS/iOS Indian English
+      'Geeta',                // Android/Chrome Indian English
+      'Google UK English Female', // Good quality natural fallback
+      'Google US English'
     ];
 
-    for (const name of femaleVoicePriority) {
+    for (const name of indianVoicePriority) {
       const match = voices.find(v => v.name.includes(name));
       if (match) return match;
     }
 
-    // Wider fallback: any voice hinted as female AND English
-    const fallback = voices.find(v =>
-      v.lang.startsWith('en') &&
-      (/female|woman|girl/i.test(v.name))
+    // Find any Indian English female voice
+    const indianFemale = voices.find(v =>
+      (v.lang.includes('en-IN') || v.lang.includes('en_IN')) &&
+      /female|woman|girl/i.test(v.name)
     );
-    return fallback; // may still be undefined – that's fine
+    if (indianFemale) return indianFemale;
+
+    // Fallback to any Indian English voice
+    const anyIndian = voices.find(v => v.lang.includes('en-IN') || v.lang.includes('en_IN'));
+    if (anyIndian) return anyIndian;
+
+    // Wider fallback: any female English voice
+    return voices.find(v =>
+      v.lang.startsWith('en') && /female|woman|girl/i.test(v.name)
+    );
   };
 
   // Apply shared voice settings to an utterance
   const applyVoiceSettings = (utterance: SpeechSynthesisUtterance) => {
-    utterance.rate = 0.88;  // slightly slower → clearer, sweeter
-    utterance.pitch = 1.25;  // bright but not cartoon-ish
-    utterance.volume = 0.85;
+    utterance.rate = 0.95;  // Slightly closer to normal speed for a more natural flow
+    utterance.pitch = 1.05; // Closer to 1.0 to avoid sounding cartoonish and maintain a human tone
+    utterance.volume = 0.9;
     const voice = getBestFemaleVoice();
     if (voice) utterance.voice = voice;
   };
@@ -70,7 +73,8 @@ const LandingPage = () => {
 
   const speakLaunch = () => {
     if ('speechSynthesis' in window) {
-      setIsSpeaking(true);
+      -
+        setIsSpeaking(true);
       const utterance = new SpeechSynthesisUtterance(
         "Wonderful! Let's see what we can do with your item. Every small action counts!"
       );
@@ -123,42 +127,42 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-green-50/80 via-white to-emerald-100/60 flex items-center justify-center p-4 relative overflow-hidden font-sans">
       {/* Decorative Greenery Elements */}
 
       {/* Top left leaf cluster */}
-      <div className="absolute top-0 left-0 text-6xl opacity-20 -rotate-12 select-none pointer-events-none">
+      <div className="absolute top-0 left-0 text-7xl opacity-10 -rotate-12 select-none pointer-events-none drop-shadow-sm">
         🌿🍃🌱
       </div>
 
       {/* Top right corner vine */}
-      <div className="absolute top-10 right-20 text-4xl opacity-15 rotate-45 select-none pointer-events-none">
+      <div className="absolute top-10 right-20 text-5xl opacity-10 rotate-45 select-none pointer-events-none blur-[1px]">
         🌿
       </div>
 
       {/* Bottom left plants */}
-      <div className="absolute bottom-10 left-10 text-5xl opacity-20 select-none pointer-events-none">
+      <div className="absolute bottom-10 left-10 text-6xl opacity-10 select-none pointer-events-none drop-shadow-sm">
         🌱🌿
       </div>
 
       {/* Floating leaves animation */}
-      <div className="absolute top-1/4 left-10 text-3xl opacity-30 animate-bounce select-none pointer-events-none" style={{ animationDelay: '0s', animationDuration: '3s' }}>
+      <div className="absolute top-1/4 left-10 text-3xl opacity-20 animate-bounce select-none pointer-events-none mix-blend-multiply" style={{ animationDelay: '0s', animationDuration: '4s' }}>
         🍃
       </div>
-      <div className="absolute top-1/3 left-1/4 text-2xl opacity-20 animate-bounce select-none pointer-events-none" style={{ animationDelay: '1s', animationDuration: '4s' }}>
+      <div className="absolute top-1/3 left-1/4 text-2xl opacity-15 animate-bounce select-none pointer-events-none mix-blend-multiply" style={{ animationDelay: '1s', animationDuration: '5s' }}>
         🌿
       </div>
-      <div className="absolute bottom-1/4 left-20 text-2xl opacity-25 animate-bounce select-none pointer-events-none" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}>
+      <div className="absolute bottom-1/4 left-20 text-3xl opacity-20 animate-bounce select-none pointer-events-none mix-blend-multiply" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }}>
         🌱
       </div>
 
       {/* Decorative green circles/blobs */}
-      <div className="absolute top-20 left-1/3 w-32 h-32 bg-green-200 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
-      <div className="absolute bottom-32 left-10 w-48 h-48 bg-emerald-200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-      <div className="absolute top-1/2 left-5 w-24 h-24 bg-green-300 rounded-full blur-2xl opacity-25 pointer-events-none"></div>
+      <div className="absolute top-10 left-1/4 w-64 h-64 bg-green-200/40 rounded-full blur-[80px] pointer-events-none mix-blend-multiply"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-emerald-200/30 rounded-full blur-[100px] pointer-events-none mix-blend-multiply"></div>
+      <div className="absolute top-1/2 left-20 w-48 h-48 bg-teal-200/30 rounded-full blur-[60px] pointer-events-none mix-blend-multiply"></div>
 
       {/* Bottom decorative grass/leaves strip */}
-      <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-green-400 via-emerald-500 to-green-400 opacity-60"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent blur-sm"></div>
 
       {/* Voice Control Button */}
       <div className="fixed top-6 right-6 z-50">
@@ -167,9 +171,9 @@ const LandingPage = () => {
           variant="outline"
           size="icon"
           className={`
-            bg-white/80 backdrop-blur-md border-primary/40 hover:border-primary
-            transition-all duration-300 rounded-full w-14 h-14 shadow-lg
-            ${isSpeaking ? 'animate-pulse bg-primary/20' : 'hover:bg-primary/10'}
+            bg-white/70 backdrop-blur-xl border-white/50 hover:border-primary/30 hover:bg-white/90
+            transition-all duration-500 rounded-2xl w-14 h-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)]
+            ${isSpeaking ? 'animate-pulse shadow-primary/20' : ''}
           `}
         >
           {isSpeaking ? (
@@ -180,55 +184,64 @@ const LandingPage = () => {
         </Button>
       </div>
 
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center z-10">
         {/* Left side - Text content */}
-        <div className="space-y-4 text-center lg:text-left fade-in">
+        <div className="space-y-6 text-center lg:text-left fade-in px-4 sm:px-0">
           <div>
             {/* Logo with tagline words */}
-            <div className="flex items-center justify-center lg:justify-start gap-6 mb-6">
-              <img
-                src="/ecofy-logo.png"
-                alt="EcoFy Logo"
-                className="w-24 h-24 lg:w-36 lg:h-36 "
-              />
-              <div className="flex flex-col">
-                <span className="text-xl lg:text-3xl font-bold text-primary/80 tracking-wide">Reimagine</span>
-                <span className="text-xl lg:text-3xl font-bold text-primary tracking-wide">Recycle</span>
-                <span className="text-xl lg:text-3xl font-bold text-secondary tracking-wide">Reuse</span>
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+              <div className="relative group">
+                <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-emerald-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition duration-700"></div>
+                <img
+                  src="/ecofy-logo.png"
+                  alt="EcoFy Logo"
+                  className="w-28 h-28 lg:w-32 lg:h-32 relative z-10 drop-shadow-lg transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-row sm:flex-col gap-3 sm:gap-1 mt-4 sm:mt-0">
+                <span className="text-sm lg:text-lg font-bold text-gray-400 tracking-[0.2em] uppercase">Reimagine</span>
+                <span className="text-sm lg:text-lg font-bold text-primary/70 tracking-[0.2em] uppercase">Recycle</span>
+                <span className="text-sm lg:text-lg font-bold text-emerald-600/80 tracking-[0.2em] uppercase">Reuse</span>
               </div>
             </div>
-            <h1 className="text-6xl lg:text-8xl font-black bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-              Midori
-            </h1>
-            <h2 className="text-xl lg:text-2xl font-extrabold text-primary mt-1">
-              Your Friendly Waste Companion
-            </h2>
+
+            <div className="space-y-2">
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight text-gray-900">
+                Hi, I'm <br className="hidden lg:block" />
+                <span className="bg-gradient-to-r from-emerald-500 via-green-500 to-teal-400 bg-clip-text text-transparent inline-block pb-2 drop-shadow-sm">
+                  Midori.
+                </span>
+              </h1>
+              <h2 className="text-2xl lg:text-3xl font-semibold text-gray-600 mt-4 leading-snug">
+                Your elegant <span className="text-primary">waste companion.</span>
+              </h2>
+            </div>
           </div>
 
-          <p className="text-lg lg:text-xl text-gray-600 max-w-xl font-medium">
-            Hi! I'm Midori 🌱 Let's see what your waste can become.
-            Together, we'll discover creative ways to reuse, recycle, and make a positive impact on our planet.
+          <p className="text-lg lg:text-xl text-gray-500 max-w-lg font-medium leading-relaxed mx-auto lg:mx-0">
+            Let's see what your waste can become.
+            Together, we'll discover creative ways to reuse, recycle, and make a positive impact on our planet. 🌱
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-6">
             <Button
               variant="default"
               size="lg"
               onClick={() => navigate("/auth")}
-              className="bg-primary hover:bg-primary/90 text-white text-lg px-10 py-6 font-bold shadow-xl shadow-primary/30 rounded-xl group"
+              className="bg-gradient-to-r from-primary to-emerald-600 hover:from-primary/95 hover:to-emerald-600/95 text-white text-lg px-10 py-7 font-bold shadow-xl shadow-emerald-500/20 rounded-full group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/30"
             >
-              Get Started
-              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              Start Creating
+              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Button>
             <Button
               variant="outline"
               size="lg"
               onClick={() => navigate("/about")}
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-white text-lg px-8 py-6 font-bold rounded-xl"
+              className="border-2 border-primary/10 bg-white/50 backdrop-blur-sm text-gray-700 hover:text-primary hover:bg-white/80 hover:border-primary/20 text-lg px-8 py-7 font-semibold rounded-full shadow-sm transition-all duration-300 hover:-translate-y-1"
             >
-              How Midori Helps
+              Learn More
             </Button>
           </div>
         </div>
