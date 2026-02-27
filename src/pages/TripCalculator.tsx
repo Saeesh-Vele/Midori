@@ -331,7 +331,7 @@ const TripCalculator = () => {
                     >
                         <img src="/ecofy-logo.png" alt="EcoFy" className="w-10 h-10" />
                         <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
-                            EcoFy
+                           Midori
                         </span>
                     </div>
                     <div className="flex items-center gap-3">

@@ -89,7 +89,7 @@ const Auth = () => {
             <Leaf className="w-8 h-8 text-white" />
           </div>
           <CardTitle className="text-3xl font-extrabold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
-            Welcome to EcoFy
+            Welcome to Midori
           </CardTitle>
           <CardDescription className="text-gray-600">
             Join the eco-friendly revolution 🌍
@@ -146,7 +146,7 @@ const Auth = () => {
                       Logging in...
                     </>
                   ) : (
-                    "Login to EcoFy"
+                    "Login to Midori"
                   )}
                 </Button>
               </form>
@@ -202,7 +202,7 @@ const Auth = () => {
                     </>
                   ) : (
                     <>
-                      🌱 Join EcoFy
+                      🌱 Join Midori
                     </>
                   )}
                 </Button>

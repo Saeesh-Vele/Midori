@@ -879,7 +879,7 @@ const Community = () => {
                     >
                         <img src="/ecofy-logo.png" alt="EcoFy" className="w-10 h-10" />
                         <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
-                            EcoFy
+                            Midori
                         </span>
                     </div>
                     <div className="flex gap-2 items-center">
@@ -924,7 +924,7 @@ const Community = () => {
                         <span className="text-sm font-medium">Join {communityStats.totalMembers.toLocaleString()}+ Eco Warriors</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                        EcoFy Community 🌍
+                        Midori Community 🌍
                     </h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                         Share tips, join challenges, and compete on the leaderboard. Together we're making a difference!

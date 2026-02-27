@@ -53,12 +53,12 @@ const LandingPage = () => {
     if (voice) utterance.voice = voice;
   };
 
-  // EcoFy Buddy Voice - warm, encouraging, friendly
+  // Midori Voice - warm, encouraging, friendly
   const speakWelcome = (manual = false) => {
     if ('speechSynthesis' in window && (!hasSpoken || manual)) {
       setIsSpeaking(true);
       const utterance = new SpeechSynthesisUtterance(
-        "Hello there! I'm EcoFy Buddy, your friendly eco companion. I'm here to help you discover amazing ways to reuse, recycle, and give new life to everyday items. Let's make the planet a little greener together!"
+        "Hello there! I'm Midori , your friendly eco companion. I'm here to help you discover amazing ways to reuse, recycle, and give new life to everyday items. Let's make the planet a little greener together!"
       );
       applyVoiceSettings(utterance);
       utterance.onend = () => setIsSpeaking(false);
@@ -198,7 +198,7 @@ const LandingPage = () => {
               </div>
             </div>
             <h1 className="text-6xl lg:text-8xl font-black bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-              EcoFy
+              Midori
             </h1>
             <h2 className="text-xl lg:text-2xl font-extrabold text-primary mt-1">
               Your Friendly Waste Companion
@@ -206,7 +206,7 @@ const LandingPage = () => {
           </div>
 
           <p className="text-lg lg:text-xl text-gray-600 max-w-xl font-medium">
-            Hi! I'm EcoFy Buddy 🌱 Let's see what your waste can become.
+            Hi! I'm Midori 🌱 Let's see what your waste can become.
             Together, we'll discover creative ways to reuse, recycle, and make a positive impact on our planet.
           </p>
 
@@ -228,7 +228,7 @@ const LandingPage = () => {
               onClick={() => navigate("/about")}
               className="border-2 border-primary text-primary hover:bg-primary hover:text-white text-lg px-8 py-6 font-bold rounded-xl"
             >
-              How EcoFy Helps
+              How Midori Helps
             </Button>
           </div>
         </div>
@@ -241,7 +241,7 @@ const LandingPage = () => {
             width='100%'
             height='100%'
             className="border-0"
-            title="EcoFy Buddy - Your Eco Companion"
+            title="Midori - Your Eco Companion"
           />
           {/* Cover to hide Spline watermark */}
           <div className="absolute bottom-0 right-0 w-48 h-14  bg-[#f1fdf8] pointer-events-none z-10"></div>

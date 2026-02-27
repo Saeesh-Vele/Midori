@@ -40,7 +40,7 @@ const EcoChatbot = () => {
         {
             id: "welcome",
             type: "bot",
-            content: "Hi there! 🌱 I'm EcoFy Buddy, your friendly eco-companion! Upload a photo of any item, and I'll help you discover the best ways to reuse, recycle, or give it new life. Let's make the planet a little greener together!",
+            content: "Hi there! 🌱 I'm Midori Buddy, your friendly eco-companion! Upload a photo of any item, and I'll help you discover the best ways to reuse, recycle, or give it new life. Let's make the planet a little greener together!",
             timestamp: new Date()
         }
     ]);
@@ -161,7 +161,7 @@ const EcoChatbot = () => {
                     >
                         <img src="/ecofy-logo.png" alt="EcoFy" className="w-10 h-10" />
                         <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
-                            EcoFy
+                            Midori
                         </span>
                     </div>
                     <div className="flex gap-1 items-center flex-wrap">
