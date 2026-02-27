@@ -165,7 +165,7 @@ const EcoChatbot = () => {
                             Midori
                         </span>
                     </div>
-                    <div className="flex gap-1 items-center flex-wrap">
+                    <div className="flex gap-1 items-center ">
                         <Button
                             variant="ghost"
                             onClick={() => navigate("/eco-map")}
