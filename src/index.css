@@ -1,0 +1,276 @@
+/* Tailwind CSS imports - warnings are normal */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* EcoFy - Soft, friendly, people-first design system */
+
+@layer base {
+  :root {
+    /* Clean white & green eco-friendly palette */
+    --background: 0 0% 100%;
+    /* Pure white */
+    --foreground: 145 30% 20%;
+    /* Dark green */
+
+    /* Card components */
+    --card: 145 30% 96%;
+    /* Very light mint */
+    --card-foreground: 145 30% 20%;
+
+    /* Popover */
+    --popover: 145 25% 92%;
+    --popover-foreground: 145 15% 25%;
+
+    /* Primary green (Hope & Action) */
+    --primary: 145 70% 40%;
+    /* Vibrant forest green */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary mint (Freshness & Positivity) */
+    --secondary: 160 60% 45%;
+    /* Fresh teal green */
+    --secondary-foreground: 145 15% 25%;
+
+    /* Muted sage */
+    --muted: 145 20% 88%;
+    --muted-foreground: 145 10% 45%;
+
+    /* Accent coral (Encouragement) */
+    --accent: 15 75% 70%;
+    /* Warm coral */
+    --accent-foreground: 145 15% 25%;
+
+    /* Destructive - gentle */
+    --destructive: 0 65% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 145 20% 82%;
+    --input: 145 25% 92%;
+    --ring: 145 45% 55%;
+
+    /* Eco-friendly gradients */
+    --eco-primary: linear-gradient(135deg, hsl(145 70% 40%) 0%, hsl(160 60% 45%) 50%, hsl(145 60% 35%) 100%);
+    --eco-secondary: linear-gradient(45deg, hsl(0 0% 100%) 0%, hsl(145 30% 96%) 50%, hsl(0 0% 100%) 100%);
+    --soft-glow: radial-gradient(circle at center, hsl(145 70% 40% / 0.1) 0%, transparent 70%);
+    --leaf-pattern: radial-gradient(circle at 20% 30%, hsl(145 50% 85% / 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, hsl(160 40% 80% / 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, hsl(145 30% 85% / 0.2) 0%, transparent 60%);
+
+    /* Animations */
+    --float-duration: 8s;
+    --pulse-duration: 4s;
+    --glow-duration: 5s;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 145 25% 92%;
+    --sidebar-foreground: 145 15% 25%;
+    --sidebar-primary: 145 45% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 145 20% 88%;
+    --sidebar-accent-foreground: 145 15% 25%;
+    --sidebar-border: 145 20% 82%;
+    --sidebar-ring: 145 45% 55%;
+  }
+
+  .dark {
+    /* Light mode only for EcoFy - keeping warm and friendly */
+    --background: 45 40% 96%;
+    --foreground: 145 15% 25%;
+    --card: 145 25% 92%;
+    --card-foreground: 145 15% 25%;
+    --popover: 145 25% 92%;
+    --popover-foreground: 145 15% 25%;
+    --primary: 145 45% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 160 50% 75%;
+    --secondary-foreground: 145 15% 25%;
+    --muted: 145 20% 88%;
+    --muted-foreground: 145 10% 45%;
+    --accent: 15 75% 70%;
+    --accent-foreground: 145 15% 25%;
+    --destructive: 0 65% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 145 20% 82%;
+    --input: 145 25% 92%;
+    --ring: 145 45% 55%;
+    --sidebar-background: 145 25% 92%;
+    --sidebar-foreground: 145 15% 25%;
+    --sidebar-primary: 145 45% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 145 20% 88%;
+    --sidebar-accent-foreground: 145 15% 25%;
+    --sidebar-border: 145 20% 82%;
+    --sidebar-ring: 145 45% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--leaf-pattern), var(--eco-secondary);
+    background-size: 400px 400px, 100% 100%;
+    animation: leaf-drift 180s linear infinite;
+  }
+}
+
+@layer components {
+  .eco-background {
+    background: var(--leaf-pattern), var(--eco-secondary);
+    background-size: 400px 400px, 100% 100%;
+    animation: leaf-drift 180s linear infinite;
+  }
+
+  .soft-glow {
+    position: relative;
+  }
+
+  .soft-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: var(--soft-glow);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: gentle-pulse var(--glow-duration) ease-in-out infinite alternate;
+  }
+
+  .eco-card {
+    @apply bg-card/90 backdrop-blur-sm border border-border/60;
+    background: linear-gradient(135deg, hsl(var(--card) / 0.9) 0%, hsl(var(--card) / 0.7) 100%);
+    box-shadow: 0 4px 24px hsl(var(--primary) / 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .eco-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.12);
+  }
+
+  .gentle-float {
+    animation: gentle-float var(--float-duration) ease-in-out infinite;
+  }
+
+  .gentle-pulse {
+    animation: gentle-pulse var(--pulse-duration) ease-in-out infinite;
+  }
+
+  .sound-wave-container {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: end;
+    gap: 6px;
+    opacity: 0.5;
+  }
+
+  .sound-wave {
+    width: 6px;
+    background: linear-gradient(to top, hsl(var(--primary)), hsl(var(--secondary)));
+    border-radius: 3px;
+    animation: wave-pulse 1.8s ease-in-out infinite;
+    box-shadow: 0 0 8px hsl(var(--primary) / 0.3);
+  }
+
+  .sound-wave:nth-child(1) {
+    height: 50px;
+    animation-delay: 0s;
+  }
+
+  .sound-wave:nth-child(2) {
+    height: 80px;
+    animation-delay: 0.3s;
+  }
+
+  .sound-wave:nth-child(3) {
+    height: 45px;
+    animation-delay: 0.6s;
+  }
+
+  /* Fade in animation for cards */
+  .fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  /* Button hover effects */
+  .btn-eco-hover {
+    transition: all 0.2s ease;
+  }
+
+  .btn-eco-hover:hover {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes leaf-drift {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+
+  100% {
+    background-position: 400px 400px, 0 0;
+  }
+}
+
+@keyframes gentle-float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes gentle-pulse {
+
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes wave-pulse {
+
+  0%,
+  100% {
+    transform: scaleY(0.5);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scaleY(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
