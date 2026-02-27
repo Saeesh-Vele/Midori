@@ -151,76 +151,265 @@ const EcoChatbot = () => {
         }
     };
 
+    const navItems = [
+        { label: "Eco Map", path: "/eco-map", icon: "🗺️" },
+        { label: "Trip Calc", path: "/trip-calculator", icon: "🚗" },
+        { label: "Community", path: "/community", icon: "👥" },
+        { label: "Carbon", path: "/carbon", icon: "🌍" },
+    ];
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
-            {/* Header */}
-            <div className="bg-white/80 backdrop-blur-md border-b border-green-100 py-4 px-6 sticky top-0 z-50">
-                <div className="max-w-4xl mx-auto flex items-center justify-between">
-                    <div
-                        className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            {/* ── Premium Navbar ── */}
+            <header
+                style={{
+                    background: "rgba(255,255,255,0.72)",
+                    backdropFilter: "blur(20px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+                    borderBottom: "1px solid rgba(34,197,94,0.15)",
+                    boxShadow: "0 4px 32px rgba(34,197,94,0.07), 0 1px 0 rgba(255,255,255,0.9) inset",
+                }}
+                className="sticky top-0 z-50 py-3 px-6"
+            >
+                <div className="max-w-5xl mx-auto flex items-center justify-between gap-4">
+
+                    {/* ── Logo ── */}
+                    <button
                         onClick={() => navigate("/")}
+                        className="flex items-center gap-2.5 group flex-shrink-0 focus:outline-none"
+                        style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
                     >
-                        <img src="/ecofy-logo.png" alt="EcoFy" className="w-10 h-10" />
-                        <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
+                        {/* Animated glow ring around logo */}
+                        <span
+                            className="relative flex items-center justify-center"
+                            style={{ width: 40, height: 40 }}
+                        >
+                            <span
+                                style={{
+                                    position: "absolute",
+                                    inset: -3,
+                                    borderRadius: "50%",
+                                    background: "conic-gradient(from 0deg, #22c55e, #10b981, #34d399, #22c55e)",
+                                    opacity: 0.4,
+                                    animation: "navbar-spin 4s linear infinite",
+                                }}
+                            />
+                            <img
+                                src="/ecofy-logo.png"
+                                alt="Midori"
+                                className="w-9 h-9 rounded-full relative z-10 group-hover:scale-105 transition-transform duration-200"
+                                style={{ objectFit: "cover" }}
+                            />
+                        </span>
+                        <span
+                            className="text-xl font-extrabold tracking-tight select-none"
+                            style={{
+                                background: "linear-gradient(135deg, #16a34a 0%, #059669 50%, #22c55e 100%)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                backgroundClip: "text",
+                                letterSpacing: "-0.02em",
+                            }}
+                        >
                             Midori
                         </span>
-                    </div>
-                    <div className="flex gap-1 items-center ">
-                        <Button
-                            variant="ghost"
-                            onClick={() => navigate("/eco-map")}
-                            className="text-green-700 hover:bg-green-100 text-sm px-3"
+                        {/* Live badge */}
+                        <span
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: 4,
+                                fontSize: "0.6rem",
+                                fontWeight: 700,
+                                letterSpacing: "0.06em",
+                                background: "linear-gradient(135deg,#dcfce7,#bbf7d0)",
+                                color: "#15803d",
+                                border: "1px solid #86efac",
+                                borderRadius: 999,
+                                padding: "1px 7px",
+                                marginBottom: 1,
+                                alignSelf: "flex-end",
+                            }}
                         >
-                            🗺️ Eco Map
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            onClick={() => navigate("/trip-calculator")}
-                            className="text-green-700 hover:bg-green-100 text-sm px-3"
-                        >
-                            🚗 Trip Calculator
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            onClick={() => navigate("/community")}
-                            className="text-green-700 hover:bg-green-100 text-sm px-3"
-                        >
-                            👥 Community
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            onClick={() => navigate("/carbon")}
-                            className="text-green-700 hover:bg-green-100 text-sm px-3"
-                        >
-                            🌍 Carbon Calculator
-                        </Button>
-                        <Button
+                            <span
+                                style={{
+                                    width: 5,
+                                    height: 5,
+                                    borderRadius: "50%",
+                                    background: "#22c55e",
+                                    boxShadow: "0 0 6px #22c55e",
+                                    display: "inline-block",
+                                    animation: "gentle-pulse 2s ease-in-out infinite",
+                                }}
+                            />
+                            AI
+                        </span>
+                    </button>
+
+                    {/* ── Nav Pills ── */}
+                    <nav
+                        className="hidden md:flex items-center"
+                        style={{
+                            background: "rgba(240,253,244,0.8)",
+                            border: "1px solid rgba(134,239,172,0.4)",
+                            borderRadius: 999,
+                            padding: "4px 6px",
+                            gap: 2,
+                        }}
+                    >
+                        {navItems.map((item) => (
+                            <button
+                                key={item.path}
+                                onClick={() => navigate(item.path)}
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 5,
+                                    padding: "6px 14px",
+                                    borderRadius: 999,
+                                    fontSize: "0.8rem",
+                                    fontWeight: 500,
+                                    border: "none",
+                                    cursor: "pointer",
+                                    color: "#15803d",
+                                    background: "transparent",
+                                    transition: "background 0.18s, color 0.18s, transform 0.15s, box-shadow 0.18s",
+                                    whiteSpace: "nowrap",
+                                }}
+                                onMouseEnter={(e) => {
+                                    (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(135deg,#22c55e,#10b981)";
+                                    (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 14px rgba(34,197,94,0.35)";
+                                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+                                    (e.currentTarget as HTMLButtonElement).style.color = "#15803d";
+                                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+                                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+                                }}
+                            >
+                                <span style={{ fontSize: "0.85rem" }}>{item.icon}</span>
+                                {item.label}
+                            </button>
+                        ))}
+                    </nav>
+
+                    {/* ── Right Actions ── */}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                        {/* Smart Camera CTA */}
+                        <button
                             onClick={() => navigate("/smart-camera")}
-                            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl"
-                            >
-                            <Camera size={18} />
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 7,
+                                padding: "8px 18px",
+                                borderRadius: 999,
+                                fontSize: "0.82rem",
+                                fontWeight: 600,
+                                border: "none",
+                                cursor: "pointer",
+                                background: "linear-gradient(135deg, #16a34a 0%, #059669 60%, #10b981 100%)",
+                                color: "#fff",
+                                boxShadow: "0 4px 16px rgba(34,197,94,0.38), 0 1px 0 rgba(255,255,255,0.18) inset",
+                                transition: "transform 0.18s, box-shadow 0.18s",
+                                letterSpacing: "-0.01em",
+                            }}
+                            onMouseEnter={(e) => {
+                                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px) scale(1.03)";
+                                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 24px rgba(34,197,94,0.48), 0 1px 0 rgba(255,255,255,0.18) inset";
+                            }}
+                            onMouseLeave={(e) => {
+                                (e.currentTarget as HTMLButtonElement).style.transform = "none";
+                                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 16px rgba(34,197,94,0.38), 0 1px 0 rgba(255,255,255,0.18) inset";
+                            }}
+                        >
+                            <Camera size={15} style={{ flexShrink: 0 }} />
                             Smart Camera
-                        </Button>
+                        </button>
+
+                        {/* Auth / Points */}
                         {user ? (
-                            <Button
+                            <button
                                 onClick={() => navigate("/profile")}
-                                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 flex items-center gap-2"
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 7,
+                                    padding: "7px 16px",
+                                    borderRadius: 999,
+                                    fontSize: "0.82rem",
+                                    fontWeight: 700,
+                                    border: "2px solid transparent",
+                                    cursor: "pointer",
+                                    background: "linear-gradient(#fff,#fff) padding-box, conic-gradient(from 0deg,#22c55e,#10b981,#059669,#22c55e) border-box",
+                                    color: "#15803d",
+                                    boxShadow: "0 2px 12px rgba(34,197,94,0.18)",
+                                    transition: "transform 0.18s, box-shadow 0.18s",
+                                }}
+                                onMouseEnter={(e) => {
+                                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
+                                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px rgba(34,197,94,0.28)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    (e.currentTarget as HTMLButtonElement).style.transform = "none";
+                                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 12px rgba(34,197,94,0.18)";
+                                }}
                             >
-                                <Trophy className="w-4 h-4" />
-                                {userProfile?.totalPoints || 0} pts
-                            </Button>
+                                <Trophy
+                                    size={14}
+                                    style={{
+                                        color: "#f59e0b",
+                                        filter: "drop-shadow(0 0 4px rgba(245,158,11,0.5))",
+                                    }}
+                                />
+                                <span>{userProfile?.totalPoints || 0} pts</span>
+                            </button>
                         ) : (
-                            <Button
+                            <button
                                 onClick={() => navigate("/auth")}
-                                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 flex items-center gap-2"
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 7,
+                                    padding: "7px 16px",
+                                    borderRadius: 999,
+                                    fontSize: "0.82rem",
+                                    fontWeight: 600,
+                                    border: "1.5px solid rgba(34,197,94,0.35)",
+                                    cursor: "pointer",
+                                    background: "rgba(240,253,244,0.9)",
+                                    color: "#15803d",
+                                    boxShadow: "0 2px 8px rgba(34,197,94,0.1)",
+                                    transition: "all 0.18s",
+                                }}
+                                onMouseEnter={(e) => {
+                                    (e.currentTarget as HTMLButtonElement).style.background = "rgba(220,252,231,1)";
+                                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
+                                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 14px rgba(34,197,94,0.2)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    (e.currentTarget as HTMLButtonElement).style.background = "rgba(240,253,244,0.9)";
+                                    (e.currentTarget as HTMLButtonElement).style.transform = "none";
+                                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 8px rgba(34,197,94,0.1)";
+                                }}
                             >
-                                <LogIn className="w-4 h-4" />
-                                Login
-                            </Button>
+                                <LogIn size={14} />
+                                Sign In
+                            </button>
                         )}
                     </div>
                 </div>
-            </div>
+
+                {/* Keyframe for spinning logo ring */}
+                <style>{`
+                    @keyframes navbar-spin {
+                        from { transform: rotate(0deg); }
+                        to   { transform: rotate(360deg); }
+                    }
+                `}</style>
+            </header>
 
             {/* Chat Container */}
             <div className="max-w-4xl mx-auto px-4 py-6">
