@@ -495,31 +495,7 @@ const CarbonCalculator = () => {
                             )}
                         </div>
 
-                        {/* Tips Card */}
-                        <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-white">
-                            <h3 className="font-bold mb-3 flex items-center gap-2">
-                                <Lightbulb className="w-5 h-5" />
-                                Quick Tips to Reduce
-                            </h3>
-                            <ul className="space-y-2 text-sm">
-                                <li className="flex items-start gap-2">
-                                    <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                    <span>Switch to LED bulbs (75% less energy)</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                    <span>Carpool or use public transport once a week</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                    <span>One meat-free day saves 3 kg CO₂/week</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                    <span>Fix leaky taps (saves 500L water/month)</span>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             </div>
