@@ -412,8 +412,8 @@ const EcoChatbot = () => {
             </header>
 
             {/* Chat Container */}
-            <div className="max-w-4xl mx-auto px-4 py-6">
-                <ScrollArea className="h-[60vh] pr-4" ref={scrollRef}>
+            <div className="max-w-4xl mx-auto px-4 py-6 relative z-10">
+                <ScrollArea className="h-[58vh] md:h-[60vh] pr-4" ref={scrollRef}>
                     <div className="space-y-4">
                         {messages.map((message) => (
                             <div
@@ -567,7 +567,7 @@ const EcoChatbot = () => {
                 </div>
 
                 {/* Quick Tips */}
-                <div className="mt-6 flex flex-wrap gap-2 justify-center">
+                <div className="mt-6 flex flex-wrap gap-2 justify-center pb-24 md:pb-0">
                     {["📦 Cardboard Box", "🍾 Plastic Bottle", "👕 Old Clothes", "📱 Electronics"].map((tip) => (
                         <button
                             key={tip}
@@ -579,6 +579,35 @@ const EcoChatbot = () => {
                     ))}
                 </div>
             </div>
+
+            {/* ── Premium Mobile Bottom Nav ── */}
+            <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] flex justify-around items-center w-[92%] max-w-sm px-4 py-3"
+                style={{
+                    background: "rgba(255,255,255,0.85)",
+                    backdropFilter: "blur(20px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+                    border: "1px solid rgba(34,197,94,0.25)",
+                    borderRadius: 999,
+                    boxShadow: "0 10px 30px rgba(34,197,94,0.15), 0 1px 0 rgba(255,255,255,0.8) inset",
+                }}
+            >
+                {navItems.map((item) => (
+                    <button
+                        key={item.path}
+                        onClick={() => navigate(item.path)}
+                        className="flex flex-col items-center gap-1.5 focus:outline-none w-14 group transition-transform duration-300"
+                        style={{ color: "#15803d", background: "transparent", border: "none" }}
+                    >
+                        <span
+                            className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 group-hover:bg-green-100 group-hover:scale-110"
+                            style={{ fontSize: "1.2rem", boxShadow: "inset 0 0 0 1px rgba(34,197,94,0.0)" }}
+                        >
+                            {item.icon}
+                        </span>
+                        <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "-0.01em" }}>{item.label}</span>
+                    </button>
+                ))}
+            </nav>
         </div>
     );
 };
