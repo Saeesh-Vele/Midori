@@ -257,7 +257,7 @@ const LandingPage = () => {
             title="Midori - Your Eco Companion"
           />
           {/* Cover to hide Spline watermark */}
-          <div className="absolute bottom-0 right-0 w-48 h-14  bg-[#f1fdf8] pointer-events-none z-10"></div>
+          <div className="absolute bottom-0 right-0 w-48 h-14  bg-[#e4faef] pointer-events-none z-10"></div>
         </div>
       </div>
     </div>
